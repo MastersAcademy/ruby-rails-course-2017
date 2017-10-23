@@ -1,6 +1,6 @@
 Masters Academy Ruby/Rails courses project for season 2016/2017
 --------------------
-[![Join the chat at hhttps://www.facebook.com/groups/122093521809235/]])
+[! Join the chat at hhttps://www.facebook.com/groups/122093521809235/ )
 
 Terms and conditions
 --------------------
