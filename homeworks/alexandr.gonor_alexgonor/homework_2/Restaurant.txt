@@ -1,0 +1,67 @@
+Objects
+
+  Customer
+  Order
+  Waiter
+  Cook
+  Menu
+
+Methods
+
+  Customer
+    make_order
+    choose_table
+    read_menu
+    call_waiter
+    say_thanks_to_cook
+    pay_bill
+
+  Order
+    new_order
+    show_order
+    edit_order
+    destroy_order
+
+  Waiter
+    take_order
+    give_menu
+    give_order_to_cook
+    take_bill
+    give_ordered_dish
+    clean_table
+    
+  Cook
+    cook_dish
+    take_order_from_waiter
+    tasting_dish
+
+  Menu
+    show_menu
+    edit_menu
+    destroy_menu
+
+Associations
+
+  Customer
+    has_many orders
+    has_many waiters
+    has_many cooks, through waiters
+    has_one menu
+
+  Order
+    belongs_to customer
+    belongs_to waiter
+    belongs_to cook
+    belongs_to menu
+
+  Waiter
+    has_many orders
+    has_many customers
+    has_many cooks
+    has_one menu
+
+  Cook
+    has_many waiters
+    has_many orders, through waiters
+    has_many customers, through orders
+    has_one menu
