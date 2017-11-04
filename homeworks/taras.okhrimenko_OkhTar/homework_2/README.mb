@@ -1,42 +1,42 @@
-Класс Ресторан
-	название
-	тип кухни
-	контакты
+#Class Restaurant
+name
+type of kitchen
+contacts
 
-	открытие
-	доставка еды клиенту
-	снабжение продуктов 
-	система скидок
-	наличие свободных столиков
-	закрытие
+opening
+food delivery to the client
+supply of products
+discount system
+availability of free tables
+closure
 
-Класс официант (бармен, кассир)
-	Работник
+#Class waiter (bartender, cashier)
+Employee
 
-	приветствие гостей
-	расположение гостей
-	принятие заказа
-	вынос заказа
-	расщет клиента
+greeting guests
+arrangement of guests
+acceptance of an order
+order delivery
+will distribute the client
 
-Класс повар
-	Работник
+#Class cook
+Employee
 
-	прием заказа
-	приготовление заказа
-	блюдо от повара (блюдо на заказ)
+acceptance of an order
+preparation of an order
+dish from the cook (dish to order)
 
-Класс Уборка
-	Работник
+#Class Cleaning
+Employee
 
-	уборка столов
-	уборка на кухне
-	мойка посуды
+cleaning of tables
+cleaning in the kitchen
+dishwashing
 
-Класс Работник
-	Имя/фамили
-	Информация 
+#Employee class
+First name / last name
+Information
 
-	работает/выходной
-	зарплата
-	увольнение
+works / closed
+salary
+dismissal
