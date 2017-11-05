@@ -10,6 +10,7 @@ methods:
 	pick_payment
 	clean_table
 	
+	
 ##class Visitor
 attributes:
 	name
@@ -20,6 +21,7 @@ methods:
 	make_order
 	eat_dish
 	pay_order
+
 
 ##class Cook
 attributes:
