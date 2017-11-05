@@ -1,8 +1,8 @@
-﻿##class Waiter
+##class Waiter
 attributes:
 	name
 methods:
-	give_menu
+ 	give_menu
 	take_order
 	transfer_order_to_kitchen
 	bring_order
