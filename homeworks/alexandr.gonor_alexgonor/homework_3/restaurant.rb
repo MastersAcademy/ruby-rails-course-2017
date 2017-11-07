@@ -107,5 +107,5 @@ customer = Customer.new("John") #Новый посетитель
 puts customer.choose_table      #Выбирает столик
 puts customer.call_waiter       #Зовет официанта
 puts customer.read_menu         #Читает меню
-puts customer.make_order("fish") #Делает заказ
+puts customer.make_order("fish")#Делает заказ
 puts customer.pay_bill          #Оплачивает счет
