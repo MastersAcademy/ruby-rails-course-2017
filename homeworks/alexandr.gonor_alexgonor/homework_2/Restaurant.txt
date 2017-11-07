@@ -1,10 +1,10 @@
 Objects
 
-  Customer
-  Order
-  Waiter
-  Cook
-  Menu
+  Customer (name)
+  Order (number_of_dishes, total_value)
+  Waiter (name)
+  Cook (name, specialization)
+  Menu (dish, price)
 
 Methods
 
