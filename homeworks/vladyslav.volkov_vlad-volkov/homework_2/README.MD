@@ -1,59 +1,109 @@
-class visitor
+class Restaurant
 attributes:
-	name
-	table_number
+        name
+        number_of_tables
 methods:
-	choose_table()
-	sit_at_table()
-	make_order()
-	eat_dish()
-	order_bill()
-	pay_bill()
-	release_table()
-		
-class table
-attributes:
-	number
-	number_of_seats
-methods:
-	occupy()
-	release()
-	
-class bill
-attributes:
-	ordered_dishes
-	amount
-methods:
-	pay()
-	calculate_amount()
-	
-class waiter
-attributes:
-	name
-methods:
-	accept_order()
-	bring_dish()
-	bring_bill()
-	accept_payment()
-	
-class dish
-attributes:
-	name
-	cost
-methods:
-	prepare()
-	eat()
+        come_to_restaurant()
+        leave_restaurant()
 
-class cook
+class Visitor
 attributes:
-	name
+        name
+        table_number
+        order
 methods:
-	receive_order()
-	prepare_dish()
+        choose_table()
+        choose_dishes()
+        make_order()
+        eat_dish()
+        ask_bill()
+        pay_bill()
+        leave_tip()
 
-class order
+class Table < Restaurant
 attributes:
-	number
-	list_of_dishes
+        number
+        number_of_seats
+        cleaned
 methods:
-	execute()
+        occupy_table()
+        release_table()
+
+
+class Employee < Restaurant
+attributes:
+        name
+methods:
+        recruit()
+        dismiss()
+
+class Waiter < Employee
+attributes:
+        name
+methods:
+        greet_visitor()
+        bring_menu()
+        transfer_order()
+        bring_order()
+        calculate_amount()
+        bring_bill()
+        clean_table()
+
+class Menu < Restaurant
+attributes:
+        list_of_dishes
+        selected_dishes
+methods:
+       
+
+class Dish < Menu
+attributes:
+        name
+        cost
+methods:
+
+
+class Cook < Employee
+attributes:
+        name
+methods:
+        receive_order()
+        prepare_order()
+
+class Order
+attributes:
+        number
+        dishes_list
+        amount
+methods:
+
+class Bill < Waiter
+attributes:
+        dishes_list
+        amount
+        paid
+methods:
+
+###############user story#####################################
+
+Visitor Ivan Petrov go to restaurant "Cherkassy".
+Waiter Petr Ivanov greete visitor and propose to choose table.
+Visitor Ivan Petrov choose table number 10. and occupy it.
+Waiter Petr Ivanov bring menu and propose to choose dishes.
+Visitor Ivan Petrov choose "Salad" and "Soup" and make order.
+Waiter Petr Ivanov transfer order to cook Semen Gromov.
+Cook Semen Gromov prepare dishes "Salad" and "Soup".
+Waiter Petr Ivanov transfer dishes to visitor Ivan Petrov.
+Visitor Ivan Petrov eat dishes.
+Visitor Ivan Petrov ask bill.
+Waiter Petr Ivanov calculate amount 100 UAH and bring bill to visitor.
+Visitor Ivan Petrov pay bill.
+Visitor Ivan Petrov thank and leave a tip 10 UAH for the waiter.
+Visitor Ivan Petrov release table number 10.
+Visitor Ivan Petrov leave restaurant "Cherkassy".
+Waiter Petr Ivanov clean up table number 10.
+
+
+
+
+
