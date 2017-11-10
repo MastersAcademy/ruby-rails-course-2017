@@ -1,4 +1,4 @@
-﻿class Restaurant
+class Restaurant
 attributes:
 	name
 	type_kitchen
