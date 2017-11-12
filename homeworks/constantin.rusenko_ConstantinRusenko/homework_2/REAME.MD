@@ -1,3 +1,11 @@
+class Employer
+ attributes:
+	name
+	salary
+ methods:
+	get_salary()
+
+
 class visitor
  attributes:
 	name
@@ -10,24 +18,30 @@ class visitor
 	ask_bill()
  	pay_bill()
 
-class waiter
+class waiter < Employer
  attributes:
- 	name
+	name
+	salary
+
  methods:
  	accept_order()
  	bring_dish()
  	bring_bill()
 
 
-class meneger
+class maneger < Employer
  attributes:
 	name
+	salary
+
  methods:
 	talk_with_visitors()
 
-class cook
+class cook < Employer
  attributes:
 	name
+	salary
+
  methods:
  	cooking()
 
