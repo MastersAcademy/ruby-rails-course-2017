@@ -103,9 +103,9 @@ puts cook.take_order_from_waiter     #Принимает заказ от офи�
 puts cook.cook_dish("fish")          #Готовит блюдо
 puts cook.tasting_dish               #Дегустирует блюдо
 puts "----------"
-customer = Customer.new("John") #Новый посетитель
-puts customer.choose_table      #Выбирает столик
-puts customer.call_waiter       #Зовет официанта
-puts customer.read_menu         #Читает меню
-puts customer.make_order("fish")#Делает заказ
-puts customer.pay_bill          #Оплачивает счет
+customer = Customer.new("John")      #Новый посетитель
+puts customer.choose_table           #Выбирает столик
+puts customer.call_waiter            #Зовет официанта
+puts customer.read_menu              #Читает меню
+puts customer.make_order("fish")     #Делает заказ
+puts customer.pay_bill               #Оплачивает счет
