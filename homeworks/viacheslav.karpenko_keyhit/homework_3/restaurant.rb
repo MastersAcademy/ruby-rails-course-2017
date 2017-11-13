@@ -23,9 +23,8 @@ end
 class MyFriendAndMe < Human
   attr_accessor :invitation
   def lets_go
-    puts @invitation
+    puts invitation
   end
-
 end
 
 class Cook < Human
@@ -36,7 +35,7 @@ class Cook < Human
   include MakeTea
   include MakeCofee
 
-attr_accessor :time
+  attr_accessor :time
 
   def initialize(sup = '', potatoes = '', meat = '', cotlets = '', tea = '', coffe = '')
     @sup = sup
@@ -48,7 +47,7 @@ attr_accessor :time
   end
 
   def cooking_time
-    puts "Making dishes takes #{@time} minuts and we had got:"
+    puts "Making dishes takes #{time} minuts and we had got:"
   end
 end
 
@@ -64,9 +63,9 @@ class Waitress < Human
   attr_accessor :menu, :order
 
   def receive_order
-    puts @menu
+    puts menu
     puts 'We ordered:'
-    @order.each do |key, value|
+    order.each do |key, value|
       if value != ''
         puts "#{key} in the amount of #{value}."
       end
@@ -74,7 +73,7 @@ class Waitress < Human
   end
 
   def get_ready_dish
-    new_order = Cook.new(@order[:sup], @order[:potatoes], @order[:meat], @order[:cotlets], @order[:tea], @order[:coffe])
+    new_order = Cook.new(order[:sup], order[:potatoes], order[:meat], order[:cotlets], order[:tea], order[:coffe])
     new_order.time = '10'
     new_order.cooking_time
     new_order.make_sup
@@ -86,24 +85,24 @@ class Waitress < Human
   end
 
   def make_bill
-    @sup_price = !@order[:sup].nil? ? @order[:sup] * SUP : 0
+    sup_price = !order[:sup].nil? ? order[:sup] * SUP : 0
 
-    @potatoes_price = !@order[:potatoes].nil? ? @order[:potatoes] * POTATOES : 0
+    potatoes_price = !order[:potatoes].nil? ? order[:potatoes] * POTATOES : 0
 
-    @meat_price = !@order[:meat].nil? ? @order[:meat] * MEAT : 0
+    meat_price = !order[:meat].nil? ? order[:meat] * MEAT : 0
 
-    @cotlets_price = !@order[:cotlets].nil? ? @order[:cotlets] * COTLETS : 0
+    cotlets_price = !order[:cotlets].nil? ? order[:cotlets] * COTLETS : 0
 
-    @tea_price = !@order[:tea].nil? ? @order[:tea] * TEA : 0
+    tea_price = !order[:tea].nil? ? order[:tea] * TEA : 0
 
-    @coffe_price = !@order[:coffe].nil? ? @order[:coffe] * COFFE : 0
+    coffe_price = !order[:coffe].nil? ? order[:coffe] * COFFE : 0
 
-    @dish_cost = @sup_price + @potatoes_price + @meat_price + @cotlets_price + @tea_price + @coffe_price
-    @tip = (@dish_cost / 100.to_f) * 10
-    @bill = @dish_cost + @tip
-    puts "dish cost #{@dish_cost} uah."
-    puts "tip #{@tip} uah."
-    puts "Bill #{@bill} uah."
+    dish_cost = sup_price + potatoes_price + meat_price + cotlets_price + tea_price + coffe_price
+    tip = (dish_cost / 100.to_f) * 10
+    bill = dish_cost + tip
+    puts "dish cost #{dish_cost} uah."
+    puts "tip #{tip} uah."
+    puts "Bill #{bill} uah."
   end
 end
 
@@ -111,11 +110,11 @@ class Building
   attr_accessor :room, :properties_apertures
 
   def apertures
-    puts @properties_apertures
+    puts properties_apertures
   end
 
   def room_name
-    puts @room
+    puts room
   end
 end
 
@@ -123,11 +122,11 @@ class Restaurant < Building
   attr_accessor :name, :persons
 
   def restaurant_name
-    puts "It was named #{@name}."
+    puts "It was named #{name}."
   end
 
   def table
-    puts "and took table for #{@persons} persons "
+    puts "and took table for #{persons} persons "
   end
 end
 
