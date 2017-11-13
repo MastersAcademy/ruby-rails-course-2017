@@ -1,19 +1,20 @@
 class Employee
   attr_accessor :first_name
-end
-
-class Waiter < Employee
 
   def initialize (first_name)
     @first_name = first_name
   end
-  
+
+end
+
+class Waiter < Employee
+
   def waiter_comming
     puts 'Customer is comming to the restourant'
   end
   
   def self_presentation
-    puts 'Waiter: Hello, My name is #{first_name}. Are you ready to take an order?'
+    puts "Waiter: Hello, My name is #{first_name}. Are you ready to take an order?"
   end
 
   def take_order 
@@ -40,23 +41,21 @@ end
 
  class Cook < Employee
 
-  def initialize (waiter_name)
-    @waiter_name = waiter_name
-  end
-   
   def start_coocking
-    puts 'Cook: #{@waiter_name}, say to the client, his food will be ready in 20 minutes'
+    puts "Cook: #{first_name}, say to the client, his food will be ready in 20 minutes"
   end
 
   def food_is_ready
-    puts 'Cook: #{@waiter_name}, Take a food and deliver to the customer'
+    puts "Cook: #{first_name}, Take a food and deliver to the customer"
   end
 end
 
 class Customer 
 
-  def initialize (waiter)
-    @waiter = waiter
+  attr_accessor :waiter_name
+
+  def initialize (waiter_name)
+    @waiter_name = waiter_name
   end
   
   def customer_comming
@@ -64,8 +63,8 @@ class Customer
   end
 
   def new_order
-    @order = gets.chomp
-    puts 'Yes, I want to order: #{@order}'
+    order = gets.chomp
+    puts "Yes, I want to order: #{order}"
   end
   
   def waiting_for_food
@@ -73,7 +72,7 @@ class Customer
   end
     
   def ask_for_bill
-    puts 'Customer: #{@waiter}, Please give my my bill'
+    puts "Customer: #{waiter_name}, Please give my my bill"
   end
   
   def thanks_you
@@ -83,7 +82,7 @@ class Customer
   def tips
     puts 'Customer: How much do you want?'
     money = gets.chomp
-    puts 'Customer: Here are your #{money} dollars!'
+    puts "Customer: Here are your #{money} dollars!"
   end
 end  
 
