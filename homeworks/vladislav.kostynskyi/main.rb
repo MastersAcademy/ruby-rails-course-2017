@@ -3,13 +3,20 @@ class Employee
 end
 
 class Waiter < Employee
+
+  def initialize (first_name)
+    @first_name = first_name
+  end
   
   def waiter_comming
     puts "Customer is comming to the restourant"
   end
   
-  def take_order
-    puts "Waiter: Hello, My name is #{@first_name}. Are you ready to take an order?" 
+  def self_presentation
+    puts "Waiter: Hello, My name is #{@first_name}. Are you ready to take an order?"
+  end
+
+  def take_order 
     puts "Waiter: Please enter the name of the dish you want to order"
   end
   
@@ -32,18 +39,25 @@ class Waiter < Employee
 end
 
  class Cook < Employee
+
+  def initialize (waiter_name)
+    @waiter_name = waiter_name
+  end
    
   def start_coocking
-    puts "Cook: #{@first_name}, say to the client, his food will be ready in 20 minutes"
+    puts "Cook: #{waiter_name}, say to the client, his food will be ready in 20 minutes"
   end
 
   def food_is_ready
-    puts "Cook: #{@first_name}, Take a food and deliver to the customer"
+    puts "Cook: #{waiter_name}, Take a food and deliver to the customer"
   end
 end
 
 class Customer 
-  attr_accessor :waiter
+
+  def initialize (waiter)
+    @waiter = waiter
+  end
   
   def customer_comming
     puts "Waiter is comming to the customer"
@@ -73,26 +87,20 @@ class Customer
   end
 end  
 
-waiter = Waiter.new
+waiter = Waiter.new('Antony')
 waiter.waiter_comming
-customer = Customer.new
+customer = Customer.new('Antony')
 customer.customer_comming
-waiter.first_name = 'Antony'
+waiter.self_presentation
 waiter.take_order
 customer.new_order
-cook = Cook.new
-cook.first_name = 'Antony'
+cook = Cook.new(waiter.first_name)
 cook.start_coocking
 waiter.claim_info
 cook.food_is_ready
 waiter.deliver_order
-customer.waiter = 'Antony'
 customer.ask_for_bill
 waiter.deliver_bill
 customer.thanks_you
 customer.tips
 waiter.thanks
-
-
-
-
