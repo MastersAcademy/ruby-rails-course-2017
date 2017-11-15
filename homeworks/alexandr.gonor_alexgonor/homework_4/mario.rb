@@ -21,7 +21,7 @@ class Mario
       puts "It's too high for Mario..."
       return mario_arr
     end
-    steps.times{ |i| p Array.new(steps-i, '') + (Array.new(((steps-(steps-4))+i*2), '#')).fill(i+1...i+3) { |a| a = "" } }
+    steps.times{ |i| p Array.new(steps-i, ' ') + (Array.new(((steps-(steps-4))+i*2), '#')).fill(i+1...i+3) { |a| a = " " } }
   end
 
   def self.mario_str
