@@ -8,7 +8,7 @@ class Mario
     if height >= 2
 
       height.times do |t|
-	    step = height -t -1
+	    step = height -t 
 	    puts (' '*step + '#'*t) + '  ' + ('#'*t)
     end
 
