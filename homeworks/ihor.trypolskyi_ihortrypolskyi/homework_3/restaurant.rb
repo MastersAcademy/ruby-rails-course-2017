@@ -2,29 +2,13 @@ class Restaurant
 attr_accessor :rest_name
 
   def initialize(rest_name)
-    # self.rest_name = rest_name
-    # self.cust_name = cust_name
     @rest_name = rest_name
   end
-
-  # def rest_name=(rest_name)
-  #   if rest_name.empty?
-  #    # == ""
-  #     raise "Name can't be blank"
-  #   end
-  #     @rest_name = rest_name
-  # end
-
-  # def cust_name=(cust_name)
-  #   if cust_name.empty?
-  #     raise "Name can't be blank"
-  #   end
-  #   @cust_name = cust_name
-  # end
 end
 
 class Table < Restaurant
   attr_accessor :occupied
+
   def initialize(occupied = false)
     @occupied = occupied
   end
@@ -32,6 +16,7 @@ end
 
 class Order
   attr_accessor :courses, :cost
+
   def initialize(courses = {}, cost)
     @courses = courses
     @cost = cost
@@ -69,17 +54,17 @@ class Customer
     slow_print do
       "What drink would you have? "
     end
-    drink = gets.chomp
+    drink = gets.chomp.upcase
 
     slow_print do
       "What would you have for main course? "
     end
-    main_course = gets.chomp
+    main_course = gets.chomp.upcase
 
     slow_print do
       "And what is for desert? "
     end
-    desert = gets.chomp
+    desert = gets.chomp.upcase
     order.courses = {drink: drink, main_course: main_course, desert: desert}
   end
 
@@ -102,12 +87,11 @@ class Customer
   def asks_for_bill?(waiter_name, order)
     if order.courses.length == 0
       puts "You called waiter: \"#{waiter_name}, could you bring me a bill?\""
-      # pays_bill(order)
     end
   end
 
   def pays_bill(order)
-    puts "You paid #{order.cost} hrivnas"
+    puts "You paid #{order.cost} hrivnas."
   end
 
   def leaves_table
@@ -118,13 +102,11 @@ class Customer
 
   def leaves_restaurant
     puts "You went away and wish to come again."
-    # todo money
   end
 end
 
 class Staff < Restaurant
   attr_accessor :name
-    #todo tiredness
 end
 
 class FloorStaff < Staff
@@ -165,12 +147,9 @@ class Waiter < FloorStaff
   end
 
   def brings_bill(order)
-    puts "#{@name} brought the bill with sum of #{order.cost} "
+    puts "#{@name} brought the bill with sum of #{order.cost}."
   end
 end
-
-# class KitchenStaff < Staff
-# end
 
 def slow_print
   yield.each_char { |c| putc c; $stdout.flush; sleep 0.03 }
@@ -211,5 +190,3 @@ customer.pays_bill(order)
 customer.leaves_table
 porter.opens_door_for_leaving(cust_name)
 customer.leaves_restaurant
-
-
