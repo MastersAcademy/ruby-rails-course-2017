@@ -1,160 +1,215 @@
 class Restaurant
-  attr_reader :rest_name, :cust_name
+attr_accessor :rest_name
 
-  def initialize(rest_name, cust_name)
-    self.rest_name = rest_name
-    self.cust_name = cust_name
+  def initialize(rest_name)
+    # self.rest_name = rest_name
+    # self.cust_name = cust_name
+    @rest_name = rest_name
   end
 
-  def rest_name=(rest_name)
-    if rest_name == ""
-      raise "Name can't be blank"
-    end
-      @rest_name = rest_name
-  end
+  # def rest_name=(rest_name)
+  #   if rest_name.empty?
+  #    # == ""
+  #     raise "Name can't be blank"
+  #   end
+  #     @rest_name = rest_name
+  # end
 
-  def cust_name=(cust_name)
-    if cust_name == ""
-      raise "Name can't be blank"
-    end
-    @cust_name = cust_name
-  end
-
+  # def cust_name=(cust_name)
+  #   if cust_name.empty?
+  #     raise "Name can't be blank"
+  #   end
+  #   @cust_name = cust_name
+  # end
 end
 
-# class Table < Restaurant
-#   def initialize
-#     @occupied = false
-#   end
-# end
+class Table < Restaurant
+  attr_accessor :occupied
+  def initialize(occupied = false)
+    @occupied = occupied
+  end
+end
 
-class Customer < Restaurant
-  attr_accessor :order, :satiety
+class Order
+  attr_accessor :courses, :cost
+  def initialize(courses = {}, cost)
+    @courses = courses
+    @cost = cost
+  end
+end
+
+class Customer
+  attr_accessor :satiety
+
+  def initialize(cust_name, satiety, rest_name)
+    @cust_name = cust_name
+    @satiety = satiety
+    @rest_name = rest_name
+  end
 
   def gets_hungry
-    @setiety = 0
+    puts "There was an evening. Satiety was #{@satiety}."
+  end
+
+  def show_satiety
+    puts "Satiety became #{@satiety}."
   end
 
   def comes_to_restaurant
-    puts "You were passing by '#{@rest_name}' restaurant and desided to come in"
+    puts "You were passing by the '#{@rest_name}' restaurant and desided to come in."
   end
 
-  def seats_to_table
-    @occupied = true
-    puts "The table is occupied by the customer #{@cust_name}"
+  def seats_at_table
+    @table = Table.new(occupied = true)
+    print "You sat at the table."
+    p @table
   end
 
-  def makes_order
-    @order = ["drink", "first_course", "second_course", "desert"]
-    puts "You made an order #{@order}"
-  end
-
-  def has_drink
-    if @order.include?("drink")
-      @order.delete("dink")
-      @setiety =+  10
-      puts "You finished a drink"
+  def makes_order(order)
+    slow_print do
+      "What drink would you have? "
     end
-    check_order
+    drink = gets.chomp
+
+    slow_print do
+      "What would you have for main course? "
+    end
+    main_course = gets.chomp
+
+    slow_print do
+      "And what is for desert? "
+    end
+    desert = gets.chomp
+    order.courses = {drink: drink, main_course: main_course, desert: desert}
   end
 
-  def check_order
-    if @order.length == 0
-      puts "All dishes have been eaten"
-      pays_bill
+  def has_course(waiter_name, order)
+    order.courses.map do |k, v|
+      if order.courses.include?(k)
+        puts "You have finished #{v}. "
+        order.courses.delete(k)
+        @satiety += 10
+      end
+    follow_dinner(waiter_name, order)
     end
   end
 
-  def pays_bill
+  def follow_dinner(waiter_name, order)
+    show_satiety
+    asks_for_bill?(waiter_name, order)
+  end
 
+  def asks_for_bill?(waiter_name, order)
+    if order.courses.length == 0
+      puts "You called waiter: \"#{waiter_name}, could you bring me a bill?\""
+      # pays_bill(order)
+    end
+  end
 
+  def pays_bill(order)
+    puts "You paid #{order.cost} hrivnas"
   end
 
   def leaves_table
-    @occupied = false
-    puts "The table is empty again"
+    @table.occupied = false
+    print "You left the table"
+    p @table
   end
 
   def leaves_restaurant
-    puts "You went away and wish to come again"
+    puts "You went away and wish to come again."
+    # todo money
   end
 end
 
 class Staff < Restaurant
-  # attr_accessor :name,:tiredness
+  attr_accessor :name
+    #todo tiredness
 end
 
 class FloorStaff < Staff
-
-  def greets_customer
-    print "And says: Welcome to '#{@rest_name}', Mr. #{@cust_name}. "
+  def greets_customer(cust_name)
+    puts "And said: \"Welcome to '#{@rest_name}', Mr. #{cust_name}!\" "
   end
 end
 
 class Porter < FloorStaff
-  def opens_door_for_coming
-    puts "Porter opens the door. "
-    greets_customer
+  def opens_door_for_coming(cust_name)
+    print "Porter opened the door. "
+    greets_customer(cust_name)
   end
 
-  def opens_door_for_leaving
-    puts "Porter opens the door and says: 'Good buy, Mr. #{@cust_name}!'"
+  def opens_door_for_leaving(cust_name)
+    puts "Porter opened the door and said: \"Good buy, Mr. #{cust_name}!\""
   end
 end
 
 class Waiter < FloorStaff
-def initialize(rest_name, cust_name, staff_name)
-    super(rest_name, cust_name)
-    @staff_name = staff_name
-end
-
-  def brings_menu
-    print "Waiter brings menu. "
-    greets_customer
-    puts "I'm #{@staff_name} and I'm going to serve for you tonight."
+  def initialize(rest_name, name)
+      super(rest_name)
+      @name = name
   end
 
-  def brings_drink
-    puts "Waiter brings a drink"
+  def brings_menu(cust_name)
+    print "Waiter brought menu. "
+    greets_customer(cust_name)
+  end
+
+  def greets_customer(cust_name)
+    super
+    puts "\"I'm #{@name} and I'm going to serve for you tonight.\""
+  end
+
+  def brings_courses(order)
+    puts "Waiter brought #{order.courses[:drink]}, #{order.courses[:main_course]} and #{order.courses[:drink]}."
+  end
+
+  def brings_bill(order)
+    puts "#{@name} brought the bill with sum of #{order.cost} "
   end
 end
 
-class KitchenStaff < Staff
+# class KitchenStaff < Staff
+# end
 
+def slow_print
+  yield.each_char { |c| putc c; $stdout.flush; sleep 0.03 }
 end
 
-
-
-for i in "Please, enter your name: ".chars.to_a
-  print i
-  sleep 0.03
+slow_print do
+  "Please, enter your name: "
 end
 cust_name = gets.chomp.capitalize
 
-for i in "Please, enter your favorite restaurant name: ".chars.to_a
-  print i
-  sleep 0.03
+slow_print do
+  "Please, enter your favorite restaurant name: "
 end
 rest_name = gets.chomp.capitalize
+puts"-------------------"
 
+restaurant = Restaurant.new(rest_name)
+customer = Customer.new(cust_name, 0, rest_name)
 
-
-restaurant = Restaurant.new(rest_name, cust_name)
-customer = Customer.new(rest_name, cust_name)
-
+customer.gets_hungry
 customer.comes_to_restaurant
 
-porter = Porter.new(rest_name, cust_name)
-porter.opens_door_for_coming
+porter = Porter.new(rest_name)
+porter.opens_door_for_coming(cust_name)
+customer.seats_at_table
 
-customer.seats_to_table
-waiter = Waiter.new(rest_name, cust_name, "John")
-waiter.brings_menu
-customer.makes_order
-waiter.brings_drink
-customer.has_drink
+waiter = Waiter.new(rest_name, "John")
+waiter.brings_menu(cust_name)
 
-
-puts "_______________"
-porter.opens_door_for_leaving
+order = Order.new(100)
+puts"-------------------"
+customer.makes_order(order)
+puts"-------------------"
+waiter.brings_courses(order)
+customer.has_course(waiter.name, order)
+waiter.brings_bill(order)
+customer.pays_bill(order)
+customer.leaves_table
+porter.opens_door_for_leaving(cust_name)
 customer.leaves_restaurant
+
+
