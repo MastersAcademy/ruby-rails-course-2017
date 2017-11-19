@@ -6,7 +6,7 @@ class Pyramid
 			a = 0
 			while a <= hight do
 				pyramidSide = " " * (hight - a) + "A" * a
-				puts pyramidSide + "  "+ pyramidSide.reverse
+				puts pyramidSide + "  " + pyramidSide.reverse
 				a += 1
 			end
 		end
