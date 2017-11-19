@@ -7,7 +7,7 @@ class Employer
          @salary = salary         
      end
  
-    def salary_day(name, salary)
+    def salary_day
         puts "#{@name} get #{@salary}"
     end
 end
@@ -93,11 +93,11 @@ class Table
     attr_accessor :number
  
     def occupy(visitor)
-        puts "Visitor #{@name} occupy table number #{number}"
+        puts "Visitor #{visitor.name} occupy table number #{number}"
      end
 
      def leave(visitor)
-        puts "Visitor #{@name} leave table number #{number}"
+        puts "Visitor #{visitor.name} leave table number #{number}"
      end
 
 end
@@ -156,8 +156,8 @@ visitor.call_maneger(maneger)
 maneger.talk_with_visitors(visitor)
 table.leave(visitor)
 puts "Today is salary day, take your salary"
-waiter.salary_day("name", "salary")
-cook.salary_day("name", "salary")
-maneger.salary_day("name", "salary")
+waiter.salary_day
+cook.salary_day
+maneger.salary_day
 
 
