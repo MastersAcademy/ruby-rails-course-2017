@@ -17,13 +17,12 @@ class Employer
 end
 
 class Waiter < Employer
-
   def take_order(dish)
     puts "What would you like to order #{@dish = dish}?"
   end
 
   def give_menu
-    puts "Please, take menu"
+    puts 'Please, take menu'
   end
 
   def give_order_to_cook
@@ -36,18 +35,17 @@ class Waiter < Employer
 
   def give_bill(cost)
     puts "Total cost #{cost} money"
-    puts "Thank you for coming, hope to see you again!"
+    puts 'Thank you for coming, hope to see you again!'
   end
 
   def clean_table
-    puts "Cleans the table"
+    puts 'Cleans the table'
   end
 end
 
 class Cook < Employer
-
   def take_order_from_waiter
-    puts "**taking order**"
+    puts '**taking order**'
   end
 
   def cook_dish(dish)
@@ -55,7 +53,7 @@ class Cook < Employer
   end
 
   def tasting_dish
-    puts "umm yummy!"
+    puts 'umm yummy!'
   end
 end
 
@@ -71,11 +69,11 @@ class Customer
   end
 
   def call_waiter
-    puts "Сan you come?"
+    puts 'Сan you come?'
   end
 
   def read_menu
-    puts "**reading menu**"
+    puts '**reading menu**'
   end
 
   def make_order(dish)
@@ -83,29 +81,29 @@ class Customer
   end
 
   def pay_bill
-    puts "**give money**"
+    puts '**give money**'
   end
 end
 
-waiter = Waiter.new("Alex", 5000, "waiter") #Создаем нового сотрудника (официант)
-puts waiter.get_salary                      #Зарплата
-puts waiter.get_specialization              #Специальность
-puts waiter.take_order("fish")              #Принимает заказ
-puts waiter.give_order_to_cook              #Передает заказ повару
-puts waiter.give_ordered_dish               #Отдает приготовленное блюдо посетителю
-puts waiter.give_bill(100)                  #Приносит счет
-puts waiter.clean_table                     #Чистит стол
-puts "----------"
-cook = Cook.new("Bob", 7000, "cook") #Создаем нового сотрудника (повар)
-puts cook.get_salary                 #Зарплата
-puts cook.get_specialization         #Специальность
-puts cook.take_order_from_waiter     #Принимает заказ от официанта
-puts cook.cook_dish("fish")          #Готовит блюдо
-puts cook.tasting_dish               #Дегустирует блюдо
-puts "----------"
-customer = Customer.new("John")      #Новый посетитель
-puts customer.choose_table           #Выбирает столик
-puts customer.call_waiter            #Зовет официанта
-puts customer.read_menu              #Читает меню
-puts customer.make_order("fish")     #Делает заказ
-puts customer.pay_bill               #Оплачивает счет
+waiter = Waiter.new('Alex', 5000, 'waiter') # Создаем нового сотрудника (официант)
+puts waiter.get_salary                      # Зарплата
+puts waiter.get_specialization              # Специальность
+puts waiter.take_order('fish')              # Принимает заказ
+puts waiter.give_order_to_cook              # Передает заказ повару
+puts waiter.give_ordered_dish               # Отдает приготовленное блюдо посетителю
+puts waiter.give_bill(100)                  # Приносит счет
+puts waiter.clean_table                     # Чистит стол
+puts '----------'
+cook = Cook.new('Bob', 7000, 'cook') # Создаем нового сотрудника (повар)
+puts cook.get_salary                 # Зарплата
+puts cook.get_specialization         # Специальность
+puts cook.take_order_from_waiter     # Принимает заказ от официанта
+puts cook.cook_dish('fish')          # Готовит блюдо
+puts cook.tasting_dish               # Дегустирует блюдо
+puts '----------'
+customer = Customer.new('John')      # Новый посетитель
+puts customer.choose_table           # Выбирает столик
+puts customer.call_waiter            # Зовет официанта
+puts customer.read_menu              # Читает меню
+puts customer.make_order('fish')     # Делает заказ
+puts customer.pay_bill               # Оплачивает счет

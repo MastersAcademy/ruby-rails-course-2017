@@ -4,28 +4,27 @@ class Human
   attr_accessor :phrase, :move, :order, :money, :mood
 
   def walk
-    puts @move
+    puts move
   end
 
   def speak
-    puts @phrase
+    puts phrase
   end
 
   def make_order
-    puts @order
+    puts order
   end
 
   def have_mood
-    puts @mood
+    puts mood
   end
 end
 
 class MyFriendAndMe < Human
   attr_accessor :invitation
   def lets_go
-    puts @invitation
+    puts invitation
   end
-
 end
 
 class Cook < Human
@@ -36,7 +35,7 @@ class Cook < Human
   include MakeTea
   include MakeCofee
 
-attr_accessor :time
+  attr_accessor :time
 
   def initialize(sup = '', potatoes = '', meat = '', cotlets = '', tea = '', coffe = '')
     @sup = sup
@@ -48,7 +47,7 @@ attr_accessor :time
   end
 
   def cooking_time
-    puts "Making dishes takes #{@time} minuts and we had got:"
+    puts "Making dishes takes #{time} minuts and we had got:"
   end
 end
 
@@ -64,9 +63,9 @@ class Waitress < Human
   attr_accessor :menu, :order
 
   def receive_order
-    puts @menu
+    puts menu
     puts 'We ordered:'
-    @order.each do |key, value|
+    order.each do |key, value|
       if value != ''
         puts "#{key} in the amount of #{value}."
       end
@@ -74,7 +73,7 @@ class Waitress < Human
   end
 
   def get_ready_dish
-    new_order = Cook.new(@order[:sup], @order[:potatoes], @order[:meat], @order[:cotlets], @order[:tea], @order[:coffe])
+    new_order = Cook.new(order[:sup], order[:potatoes], order[:meat], order[:cotlets], order[:tea], order[:coffe])
     new_order.time = '10'
     new_order.cooking_time
     new_order.make_sup
@@ -86,48 +85,24 @@ class Waitress < Human
   end
 
   def make_bill
-    if @order[:sup] != ''
-      @sup_price = @order[:sup] * SUP
-    else
-      @sup_price = 0
-    end
+    sup_price = !order[:sup].nil? ? order[:sup] * SUP : 0
 
-    if @order[:potatoes] != ''
-      @potatoes_price = @order[:potatoes] * POTATOES
-    else
-      @potatoes_price = 0
-    end
+    potatoes_price = !order[:potatoes].nil? ? order[:potatoes] * POTATOES : 0
 
-    if @order[:meat] != ''
-      @meat_price = @order[:meat] * MEAT
-    else
-      @meat_price = 0
-    end
+    meat_price = !order[:meat].nil? ? order[:meat] * MEAT : 0
 
-    if @order[:cotlets] != ''
-      @cotlets_price = @order[:cotlets] * COTLETS
-    else
-      @cotlets_price = 0
-    end
+    cotlets_price = !order[:cotlets].nil? ? order[:cotlets] * COTLETS : 0
 
-    if @order[:tea] != ''
-      @tea_price = @order[:tea] * TEA
-    else
-      @tea_price = 0
-    end
+    tea_price = !order[:tea].nil? ? order[:tea] * TEA : 0
 
-    if @order[:coffe] != ''
-      @coffe_price = @order[:coffe] * COFFE
-    else
-      @coffe_price = 0
-    end
+    coffe_price = !order[:coffe].nil? ? order[:coffe] * COFFE : 0
 
-    @dish_cost = @sup_price + @potatoes_price + @meat_price + @cotlets_price + @tea_price + @coffe_price
-    @tip = (@dish_cost / 100.to_f) * 10
-    @bill = @dish_cost + @tip
-    puts "dish cost #{@dish_cost} uah."
-    puts "tip #{@tip} uah."
-    puts "Bill #{@bill} uah."
+    dish_cost = sup_price + potatoes_price + meat_price + cotlets_price + tea_price + coffe_price
+    tip = (dish_cost / 100.to_f) * 10
+    bill = dish_cost + tip
+    puts "dish cost #{dish_cost} uah."
+    puts "tip #{tip} uah."
+    puts "Bill #{bill} uah."
   end
 end
 
@@ -135,11 +110,11 @@ class Building
   attr_accessor :room, :properties_apertures
 
   def apertures
-    puts @properties_apertures
+    puts properties_apertures
   end
 
   def room_name
-    puts @room
+    puts room
   end
 end
 
@@ -147,11 +122,11 @@ class Restaurant < Building
   attr_accessor :name, :persons
 
   def restaurant_name
-    puts "It was named #{@name}."
+    puts "It was named #{name}."
   end
 
   def table
-    puts "and took table for #{@persons} persons "
+    puts "and took table for #{persons} persons "
   end
 end
 
@@ -176,7 +151,7 @@ my_donalds.apertures
 
 waitress = Waitress.new
 waitress.menu = 'Waitress has given us menu.'
-waitress.order = { sup: 2, potatoes: 2, meat: 2, cotlets: 1, tea: 2, coffe: '' }
+waitress.order = { sup: 2, potatoes: 2, meat: 2, cotlets: nil, tea: 2, coffe: nil }
 waitress.receive_order
 waitress.get_ready_dish
 waitress.make_bill
