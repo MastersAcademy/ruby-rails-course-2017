@@ -1,8 +1,3 @@
-HOMEWORK #4
------------------------------------
-
-### The Mario's Pyramid is the not a problem;)
-```
 class MariosPyramid
   def initialize (pyramid_symbol, numbers)
     @pyramid_symbol = pyramid_symbol
@@ -36,4 +31,3 @@ loop do
     break if (numbers > 1) and (pyramid_symbol.length == 1)
     
 end
-```
