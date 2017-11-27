@@ -10,9 +10,10 @@ class Player < Human
 
   attr_accessor :number, :team
 
-  def initialize (number, team)
-    @number = number
-    @team = team
+  def initialize (player)
+    player.each do |key, value|
+      define_singleton_method(key) { puts "#{value}"}
+    end
   end
 
   def short_pass
@@ -43,6 +44,13 @@ class Player < Human
     puts "#{name} strikes with his head"
   end
 end
+
+player = { number: "My number is 25", team: "I play for visitors"}
+
+new_player = Player.new(player)
+
+new_player.number
+new_player.team
 
 class Forward < Player
 
