@@ -1,7 +1,7 @@
 require 'json'
+require 'yaml'
 
 class User
-
   def initialize(params)
     params.each do |key, value|
       define_singleton_method(key) {  puts(value); value }
@@ -9,7 +9,12 @@ class User
   end
 end
 
-hash = { first_name: 'Alex', last_name: 'Gonor' }
+puts "Tell me your first name"
+name = gets.chomp
+puts "And last name"
+surname = gets.chomp
+
+hash = { first_name: name, last_name: surname }
 params = hash.merge({:full_name => hash.values.join(" ")})
 user = User.new(params)
 
@@ -26,3 +31,5 @@ puts user_hash = {'user' =>
 puts json = JSON.pretty_generate(user_hash)
 puts "===================================="
 puts parsed = JSON.parse(json)
+puts "===================================="
+puts parsed.to_yaml
