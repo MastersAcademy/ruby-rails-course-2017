@@ -1,3 +1,5 @@
+require 'json'
+
 class Human
   attr_accessor :name
 
@@ -46,6 +48,12 @@ class Player < Human
 end
 
 player = { number: "My number is 25", team: "I play for visitors"}
+
+player_json = player.to_json
+puts player_json
+
+player_hash = JSON.parse player_json
+puts player_hash
 
 new_player = Player.new(player)
 
