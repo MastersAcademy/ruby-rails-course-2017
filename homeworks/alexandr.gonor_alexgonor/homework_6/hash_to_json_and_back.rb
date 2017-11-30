@@ -32,4 +32,10 @@ puts json = JSON.pretty_generate(user_hash)
 puts "===================================="
 puts parsed = JSON.parse(json)
 puts "===================================="
-puts parsed.to_yaml
+File.open("user.yml", "w") do |file|
+        file.write(parsed.to_yaml)
+end
+puts yaml = parsed.to_yaml
+puts "===================================="
+puts YAML.load(File.read("user.yml"))
+puts "===================================="
