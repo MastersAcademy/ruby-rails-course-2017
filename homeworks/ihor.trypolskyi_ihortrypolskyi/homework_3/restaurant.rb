@@ -143,7 +143,7 @@ class Waiter < FloorStaff
   end
 
   def brings_courses(order)
-    puts "Waiter brought #{order.courses[:drink]}, #{order.courses[:main_course]} and #{order.courses[:drink]}."
+    puts "Waiter brought #{order.courses[:drink]}, #{order.courses[:main_course]} and #{order.courses[:desert]}."
   end
 
   def brings_bill(order)
