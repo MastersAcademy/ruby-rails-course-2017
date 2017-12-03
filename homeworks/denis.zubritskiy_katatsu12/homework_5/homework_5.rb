@@ -1,5 +1,4 @@
 class Worker
-  attr_accessor :name, :surname, :salary, :specialty
 
   def initialize(hash)
     hash.each do |key, value|
