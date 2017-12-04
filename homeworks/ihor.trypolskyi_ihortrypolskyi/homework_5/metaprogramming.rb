@@ -25,3 +25,15 @@ end
 b = B.new
 b.bye
 b.no_play
+
+class C
+  def method_missing(method_name, args)
+    args[method_name]
+  end
+end
+
+hash = {yes: "fine", no: "bad"}
+c = C.new
+p c.yes(hash)
+p c.no(hash)
+p c.ok(hash)
