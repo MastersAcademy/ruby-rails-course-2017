@@ -16,20 +16,22 @@ class Hashek
 end
 
 
-hash = { greeting_guests: 'Good day dear visitor! Im Waiter. My name is:', give_menu: 'Take menu and call me when you chose some dishes', take_order:'Ok. Im comeback whith dishes'}	
+hash = { greeting_guests: 'Good day dear visitor! Im Waiter. My name is:', 
+	give_menu: 'Take menu and call me when you chose some dishes',
+	take_order:'Ok. Im comeback whith dishes'}	
 
 
 waiter = Waiter.new("Max", "Burlakov")
 
 hashhh = Hashek.new(hash)
-puts pr = "#{hashhh.greeting_guests}" + "#{waiter.first_name} " + "#{waiter.last_name}"
+puts pr = "#{hashhh.greeting_guests}" "#{waiter.first_name} " "#{waiter.last_name}"
 hashhh.give_menu
 print "Do you ready to order? (y/n) "
 open_close = gets.chomp
 	if open_close == "n"
 		puts "Ok, just let me know"
 		abort
-	else open_close == "y"
+	elsif open_close == "y"
 		hashhh.take_order
 	end
 
