@@ -1,19 +1,23 @@
-puts "Enter height pyramid (not more 4 and not less 2)"
+puts "Enter height pyramid (not more 10 and not less 2)"
 height = gets.chomp.to_i
 
-if height < 2
+MIN_PYRAMID_HEIGHT = 2
+MAX_PYRAMID_HEIGHT = 10
+
+Sign = "@"
+
+if height < MIN_PYRAMID_HEIGHT
   puts "too low"
 
-elsif height > 4
+elsif height > MAX_PYRAMID_HEIGHT
   puts "too high"
 
 else
 
-  a = height
   b = 1
 
-  while b <= a
-    h = (" " * (a - b) + "@" * b)
+  while b <= height
+    h = (" " * (height - b) + Sign * b)
     puts h + "  " + h.reverse!
     b += 1
   end
