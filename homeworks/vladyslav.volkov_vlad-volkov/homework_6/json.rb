@@ -29,7 +29,6 @@ class MyClass
     
     my_hash.store('order', order_hash)
     
-    return my_hash
   
   end
 
