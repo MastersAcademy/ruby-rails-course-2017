@@ -1,0 +1,23 @@
+{
+    "Dish" : [
+    {
+        "title" : "Soup",
+        "ingredients": ["potatoes", "meat", "carrots", "onions", "beets"],
+        "portion_output": 250,
+        "prise": 35
+    },
+
+    {
+        "title" : "Vegetable stew",
+        "ingredients": ["potatoes", "tomato", "carrots", "onions", "beets", "pepper"],
+        "portion_output": 200,
+        "prise": 20
+    },
+
+    {
+        "title" : "Compote",
+        "ingredients": ["cherry", "plum", "pear", "apple", "wather"],
+        "portion_output": 250
+    }
+    ]
+}
