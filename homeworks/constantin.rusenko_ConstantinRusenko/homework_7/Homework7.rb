@@ -1,51 +1,48 @@
-class car_list
+class Car
+  attr_reader :car_mark, :car_model, :year
 
-	attr_reader :car_mark, :car_model, :year
-
-	def car_mark=(car_mark)
+  def car_mark=(car_mark)
     if car_mark.nil? || car_mark.size.zero?
       raise ArgumentError.new('Car must have a mark.')
     end
     @car_mark = car_mark
   end
 
-
-	def car_model=(car_model)
+  def car_model=(car_model)
     if car_model.nil? || car_model.size.zero?
       raise ArgumentError.new('Car must have a model.')
     end
     @car_model = car_model
   end
 
+  def year=(year)
+    raise NotImplementedError, 'It is not a number' unless year.is_a? Fixnum
+    if year.nil? || year.to_i.size.zero?
+      raise ArgumentError, 'Year field must be number'
+      end
+      @year = year
+  end
 
-	def year=(year)
-		if year.nil? || year.syze.zero? || year.integer?
-			raise ArgumentError.new ('Year field must be number')
-		end
-		@year = year
-	end
+  def car_list
+    "#{@car_mark} #{@car_model} #{@year}"
+  end
 
-
-	def car_list
-		"#{@car_mark} #{@car_model} #{@year}"
-	end
-
-
-	def initialize(car_mark, car_model, year)
-		self.car_mark = car_mark
-		self.car_model = car_model
-		self.year = year
-	end
+  def initialize(car_mark, car_model, year)
+    self.car_mark = car_mark
+    self.car_model = car_model
+    self.year = year
+  end
 end
 
 puts "Input car mark, car model and year of issue"
-car1 = Car_list.new ('BMW', 'X6', '2008')
-puts car1.car_list
-car2 = Car_list.new ('Volkswagen', 'Touareg II', '2010')
+car1 = Car.new('BMW', 'X6', 2008)
+p car1.car_list
+car2 = Car.new('Volkswagen', 'Touareg II', 2010)
 begin
-  car1.year = '20!8'
-rescue ScriptError
+  car2 = Car.new('Volkswagen', 'Touareg', '2002')
+rescue NotImplementedError
+  raise StandardError
 ensure
-  Car_list.new('Zaz', nil, 1987)
+  Car.new('Zaz', nil, 1987)
   p 'Incredible'
 end
