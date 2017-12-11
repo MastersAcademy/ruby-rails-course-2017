@@ -1,6 +1,6 @@
 require "json"
 
-wor = ({ name: "Jon", surname: "X", salary: 50000, specialty: "chef" })
+wor = { name: "Jon", surname: "X", salary: 50000, specialty: "chef" }
 
 puts "My hash"
 puts wor
