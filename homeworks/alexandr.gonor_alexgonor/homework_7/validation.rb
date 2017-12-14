@@ -15,23 +15,23 @@ puts "And last name"
 surname = gets.chomp
 
 begin
-  if name.size.zero?
-    raise StandardError
+  if name.empty?
+    raise StandardError.new("Name can't be nil")
   end
   rescue
-      name = 'John'
-      puts 'We give you name, one way or another'
+    name = 'John'
+    puts 'We give you name, one way or another'
   ensure
     name = name.downcase.capitalize
 end
 
 begin
-  if surname.size.zero?
-    raise StandardError
+  if surname.empty?
+    raise StandardError.new("Surname can't be nil")
   end
   rescue
-      surname = 'Doe'
-      puts 'We give you surname, one way or another'
+    surname = 'Doe'
+    puts 'We give you surname, one way or another'
   ensure
     surname = surname.downcase.capitalize
 end
