@@ -1,0 +1,9 @@
+{
+   "movieName": "Terminator 2: Judgment Day",
+   "firstName": "John",
+   "lastName": "",
+   "parents": {
+       "naturalMother": "Sarah Connor",
+       "naturalFather": ""
+   }
+}
