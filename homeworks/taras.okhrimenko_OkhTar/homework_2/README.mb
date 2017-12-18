@@ -1,0 +1,42 @@
+#Class Restaurant
+name
+type of kitchen
+contacts
+
+opening
+food delivery to the client
+supply of products
+discount system
+availability of free tables
+closure
+
+#Class waiter (bartender, cashier)
+Employee
+
+greeting guests
+arrangement of guests
+acceptance of an order
+order delivery
+will distribute the client
+
+#Class cook
+Employee
+
+acceptance of an order
+preparation of an order
+dish from the cook (dish to order)
+
+#Class Cleaning
+Employee
+
+cleaning of tables
+cleaning in the kitchen
+dishwashing
+
+#Employee class
+First name / last name
+Information
+
+works / closed
+salary
+dismissal
