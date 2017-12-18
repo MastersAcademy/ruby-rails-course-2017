@@ -1,7 +1,8 @@
+# MetaProgramming
 class MetaProgramming
   def initialize(hash)
     hash.each do |key, value|
-      define_singleton_method(key) { puts "#{value}" }
+      define_singleton_method(key) { puts value.to_s }
     end
   end
 end
@@ -12,13 +13,14 @@ puts instance.one
 puts instance.two
 puts instance.three
 
+# Employer
 class Employer
   attr_accessor :specialization
 
   def initialize(specialization, hash1)
     @specialization = specialization
     hash1.each do |key, value|
-      define_singleton_method(key) { puts "#{value}" }
+      define_singleton_method(key) { puts value.to_s }
     end
   end
 end
