@@ -19,8 +19,8 @@ class Car
     raise NotImplementedError, 'It is not a number' unless year.is_a? Fixnum
     if year.nil? || year.to_i.size.zero?
       raise ArgumentError, 'Year field must be number'
-      end
-      @year = year
+    end
+    @year = year
   end
 
   def car_list
