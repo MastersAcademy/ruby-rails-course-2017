@@ -6,7 +6,7 @@ class MyMetaprogramming
   end
 end
 
-hash = {hello: 'Hello my friend)', play: 'Do you wanna play with me?', win: 'Winner, winner, chicken dinner'}
+hash = { hello: 'Hello my friend)', play: 'Do you wanna play with me?', win: 'Winner, winner, chicken dinner' }
 newinstance = MyMetaprogramming.new(hash)
 puts newinstance.hello
 puts newinstance.play
