@@ -1,3 +1,4 @@
+# structure of restaurant
 class Employer
   attr_accessor :name, :salary, :specialization
 
@@ -7,15 +8,16 @@ class Employer
     @specialization = specialization
   end
 
-  def get_salary
+  def employer_salary
     puts "My name is #{@name}, and i earn #{@salary} money!"
   end
 
-  def get_specialization
+  def employer_specialization
     puts "I am #{@specialization}"
   end
 end
 
+# waiter
 class Waiter < Employer
   def take_order(dish)
     puts "What would you like to order #{@dish = dish}?"
@@ -43,6 +45,7 @@ class Waiter < Employer
   end
 end
 
+# cook
 class Cook < Employer
   def take_order_from_waiter
     puts '**taking order**'
@@ -57,6 +60,7 @@ class Cook < Employer
   end
 end
 
+# customer
 class Customer
   attr_accessor :name
 
@@ -85,25 +89,25 @@ class Customer
   end
 end
 
-waiter = Waiter.new('Alex', 5000, 'waiter') # Создаем нового сотрудника (официант)
-puts waiter.get_salary                      # Зарплата
-puts waiter.get_specialization              # Специальность
-puts waiter.take_order('fish')              # Принимает заказ
-puts waiter.give_order_to_cook              # Передает заказ повару
-puts waiter.give_ordered_dish               # Отдает приготовленное блюдо посетителю
-puts waiter.give_bill(100)                  # Приносит счет
-puts waiter.clean_table                     # Чистит стол
+waiter = Waiter.new('Alex', 5000, 'waiter')
+puts waiter.get_salary
+puts waiter.get_specialization
+puts waiter.take_order('fish')
+puts waiter.give_order_to_cook
+puts waiter.give_ordered_dish
+puts waiter.give_bill(100)
+puts waiter.clean_table
 puts '----------'
-cook = Cook.new('Bob', 7000, 'cook') # Создаем нового сотрудника (повар)
-puts cook.get_salary                 # Зарплата
-puts cook.get_specialization         # Специальность
-puts cook.take_order_from_waiter     # Принимает заказ от официанта
-puts cook.cook_dish('fish')          # Готовит блюдо
-puts cook.tasting_dish               # Дегустирует блюдо
+cook = Cook.new('Bob', 7000, 'cook')
+puts cook.get_salary
+puts cook.get_specialization
+puts cook.take_order_from_waiter
+puts cook.cook_dish('fish')
+puts cook.tasting_dish
 puts '----------'
-customer = Customer.new('John')      # Новый посетитель
-puts customer.choose_table           # Выбирает столик
-puts customer.call_waiter            # Зовет официанта
-puts customer.read_menu              # Читает меню
-puts customer.make_order('fish')     # Делает заказ
-puts customer.pay_bill               # Оплачивает счет
+customer = Customer.new('John')
+puts customer.choose_table
+puts customer.call_waiter
+puts customer.read_menu
+puts customer.make_order('fish')
+puts customer.pay_bill
