@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Dog</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+
+      .tamagotchi-col {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .row-flex {
+        display: flex;
+      }
+      .progress-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row row-flex">
+        <div class="col-md-8 tamagotchi-col">
+          <h1 id="heading" class="text-center">Dog</h1>
+          <div class="btn-group" role="group" aria-label="...">
+            <a href="/feed" id="feed" class="btn btn-success">Feed</a>
+            <a href="/game" id="game" class="btn btn-primary">Game</a>
+            <a href="/go_to_sleep" id="go_to_sleep" class="btn btn-default">Put to bed</a>
+            <a href="/defend_master" id="defend_master" class="btn btn-danger">Defend</a>
+            <a href="/clean" id="clean" class="btn btn-warning">Clean</a>
+          </div>
+        </div>
+        <div class="progress-wrap col-md-4">
+          <label>Hunger</label>
+          <div class="progress">
+            <div id="hunger" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
+            </div>
+          </div>
+          <label for="">Aslepp</label>
+          <div class="progress">
+            <div id="asleep" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
+            </div>
+          </div>
+          <label for="">Fun</label>
+          <div class="progress">
+            <div id="play" class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
+            </div>
+          </div>
+          <label for="">Health</label>
+          <div class="progress">
+            <div id="health" class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Ooops! Your pet is run away!</h4>
+          </div>
+          <div class="modal-body">
+            <p>Your did not care about your pet :-(</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="start-again" data-dismiss="modal" type="button" class="btn btn-primary">Start once again</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function() {
+
+        $.ajax({
+          url: 'index.json',
+          context: document.body
+        }).done(function(data) {
+          $('#hunger').css('width', data.hunger*10+'%').attr('aria-valuenow', data.hunger);
+          $('#asleep').css('width', data.asleep*10+'%').attr('aria-valuenow', data.asleep);
+          $('#play').css('width', data.play*10+'%').attr('aria-valuenow', data.play);
+          $('#health').css('width', data.health*10+'%').attr('aria-valuenow', data.health);
+          $('#message').text(data.message);
+        });
+        function petHandler(selector, path) {
+          $(selector).on('click', function(e) {
+            e.preventDefault();
+            $.ajax({
+              url: path,
+              context: document.body
+            }).done(function(data) {
+              console.log(data);
+
+              $('#hunger').css('width', data.hunger*10+'%').attr('aria-valuenow', data.hunger);
+              $('#asleep').css('width', data.asleep*10+'%').attr('aria-valuenow', data.asleep);
+              $('#play').css('width', data.play*10+'%').attr('aria-valuenow', data.play);
+              $('#health').css('width', data.health*10+'%').attr('aria-valuenow', data.health);
+              $('#message').text(data.message);
+
+              if( data.is_dead ) {
+                $('.modal').modal('toggle');
+              }
+            });
+          })
+        }
+        petHandler('#feed', '/feed.json');
+        petHandler('#game', '/game.json');
+        petHandler('#go_to_sleep', '/go_to_sleep.json');
+        petHandler('#defend_master', '/defend_master.json');
+        petHandler('#clean', '/clean.json');
+
+        petHandler('#start-again', '/index.json');
+
+      })
+    </script>
+  </body>
+</html>

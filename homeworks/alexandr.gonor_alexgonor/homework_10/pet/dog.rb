@@ -12,26 +12,19 @@ class Dog
     @message = @name + ' was born.'
   end
 
-  def help
-    puts "Dog can be feeded - dog.feed
-          You can play with him - dog.game
-          Put to sleep - dog.go_to_sleep
-          Get clean - dog.clean
-          Can defend - dog.someone_strange"
-  end
-
   def feed
     @message = 'Need to feed ' + @name
-    @hunger = 10
+    @hunger = 11
     @health += 2
+    @play -= 1
     passage_of_time
   end
 
   def game
     @message = 'Lets play with ' + @name
-    @play = 10
+    @play = 11
     @hunger -= 2
-    passageOfTime
+    passage_of_time
   end
 
   def go_to_sleep
@@ -39,6 +32,7 @@ class Dog
     @hunger -= 2
     @health += 3
     @asleep = 10
+    @play -= 2
   end
 
   def defend_master
@@ -46,6 +40,7 @@ class Dog
     @defend = true
     @hunger -= 1
     @asleep -= 1
+    @play -= 3
     @health -= 2 if @hunger <= 5 && @asleep <= 5
     passage_of_time
   end
@@ -54,15 +49,7 @@ class Dog
     @message = 'We need to clean up ' + @name
     @health += 3
     @hunger -= 1
-  end
-
-  def life_status
-    puts 'Name of dog ' + @name.to_s
-    puts 'Health ' + @health.to_s
-    puts 'Hunger ' + @hunger.to_s
-    puts 'Asleep ' + @asleep.to_s
-    puts 'Funnies ' + @play.to_s
-    puts 'Is someone enemy nearby? ' + @defend.to_s
+    @play += 1
   end
 
   private
@@ -71,6 +58,7 @@ class Dog
     @hunger -= 1
     @asleep -= 3
     @health -= 1
+    @play -= 1
     if @hunger < 2 && @health < 2
       @message = @name + ' escape from home'
       exit

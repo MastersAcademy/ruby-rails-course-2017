@@ -8,45 +8,59 @@ class Pet
     req = Rack::Request.new(env)
     case req.path_info
     when '/'
-      @pet = Dog.new('Sirko')
-      [200, { 'Content-Type' => 'text/html', 'Cache-Control' => 'public, max-age=86400' } ]
+      [200, { 'Content-Type' => 'text/html', 'Cache-Control' => 'public, max-age=86400' }, File.open('public/index.html', File::RDONLY)]
     when '/index.json'
+      @@pet = Dog.new('Sirko')
       result = JSON.generate(
-        health: @pet.health,
-        feed_status: @pet.hunger,
-        sleep_status: @pet.asleep,
-        fun_status: @pet.play,
-        message: @pet.message
+        health: @@pet.health,
+        hunger: @@pet.hunger,
+        asleep: @@pet.asleep,
+        play: @@pet.play
       )
       [200, { 'Content-Type' => 'text/json' }, [result]]
     when '/feed.json'
-      @pet.feed
+      @@pet.feed
       result = JSON.generate(
-        health: @pet.health,
-        feed_status: @pet.hunger,
-        sleep_status: @pet.asleep,
-        fun_status: @pet.play,
-        message: @pet.message
+        health: @@pet.health,
+        hunger: @@pet.hunger,
+        asleep: @@pet.asleep,
+        play: @@pet.play
       )
       [200, { 'Content-Type' => 'text/json' }, [result]]
-    when '/sleep.json'
-      @pet.go_to_sleep
+    when '/go_to_sleep.json'
+      @@pet.go_to_sleep
       result = JSON.generate(
-        health: @pet.health,
-        feed_status: @pet.hunger,
-        sleep_status: @pet.asleep,
-        fun_status: @pet.play,
-        message: @pet.message
+        health: @@pet.health,
+        hunger: @@pet.hunger,
+        asleep: @@pet.asleep,
+        play: @@pet.play
       )
       [200, { 'Content-Type' => 'text/json' }, [result]]
-    when '/fun.json'
-      @pet.game
+    when '/game.json'
+      @@pet.game
       result = JSON.generate(
-        health: @pet.health,
-        feed_status: @pet.hunger,
-        sleep_status: @pet.asleep,
-        fun_status: @pet.play,
-        message: @pet.message
+        health: @@pet.health,
+        hunger: @@pet.hunger,
+        asleep: @@pet.asleep,
+        play: @@pet.play
+      )
+      [200, { 'Content-Type' => 'text/json' }, [result]]
+    when '/defend_master.json'
+      @@pet.defend_master
+      result = JSON.generate(
+        health: @@pet.health,
+        hunger: @@pet.hunger,
+        asleep: @@pet.asleep,
+        play: @@pet.play
+      )
+      [200, { 'Content-Type' => 'text/json' }, [result]]
+    when '/clean.json'
+      @@pet.clean
+      result = JSON.generate(
+        health: @@pet.health,
+        hunger: @@pet.hunger,
+        asleep: @@pet.asleep,
+        play: @@pet.play
       )
       [200, { 'Content-Type' => 'text/json' }, [result]]
     else
