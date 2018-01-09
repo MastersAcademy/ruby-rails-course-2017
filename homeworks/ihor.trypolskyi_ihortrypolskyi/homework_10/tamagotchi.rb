@@ -74,19 +74,19 @@ class Tamagotchi
   def eat
     @belly += 6
     @energy -= 3
-    conditions_check
+    check
   end
 
   def play
     @belly -= 3
     @energy -= 3
-    conditions_check
+    check
   end
 
   def sleep
     @belly -= 3
     @energy = 30
-    conditions_check
+    check
   end
 
   private
@@ -98,7 +98,7 @@ class Tamagotchi
     @image = '&#128516;'
   end
 
-  def conditions_check
+  def check
     if @belly >= 30 || @belly <= 0 || @energy <= 0
       @die_message = "Sorry, #{@name} has died".upcase
     end
