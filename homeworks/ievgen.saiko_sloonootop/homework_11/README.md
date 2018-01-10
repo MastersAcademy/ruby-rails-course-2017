@@ -1,5 +1,5 @@
 HOMEWORK #11
 -----------------------------------
 
-### [—Ò˚ÎÍ‡ Ì‡ —odeschool](https://www.codeschool.com/users/sloonootop)
+### [Link to Codeschool](https://www.codeschool.com/users/sloonootop)
 
