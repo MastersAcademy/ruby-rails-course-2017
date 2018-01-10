@@ -18,6 +18,24 @@ name = gets.chomp
 puts 'And last name'
 surname = gets.chomp
 
+begin
+  raise StandardError, "Name can't be nil" if name.empty?
+rescue StandardError
+  name = 'John'
+  puts 'We give you name, one way or another'
+ensure
+  name = name.downcase.capitalize
+end
+
+begin
+  raise StandardError, "Surname can't be nil" if surname.empty?
+rescue StandardError
+  surname = 'Doe'
+  puts 'We give you surname, one way or another'
+ensure
+  surname = surname.downcase.capitalize
+end
+
 hash = { first_name: name, last_name: surname }
 params = hash.merge(full_name: hash.values.join(' '))
 user = User.new(params)
