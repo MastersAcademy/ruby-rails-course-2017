@@ -1,0 +1,77 @@
+class Employee
+attributes:
+     name
+
+class Hostess<Employee
+methods:
+     meets_the_visitor
+     propose_the_table
+
+class Waiter<Employee
+methods:
+     accepts_the_order
+     executes_the_order
+     calculates_a_bill
+     brings_a_bill
+     takes_the_payment
+     washes_the_table
+
+class Visitor
+attributes:
+     name
+     cash
+methods:
+     choose_the_table
+     make_order
+     ask_a_bill
+     pay_a_bill
+
+class Table
+attributes:
+     number
+     number_of_seats
+methods:
+     offered_by_the_hostess
+     booked_by_a_visitor
+     washed_by_a_waiter
+
+class Order
+attributes:
+     name_of_the_dish
+     weight_of_the_dish
+     price_of_the_dish
+methods:
+     made_by_a_visitor
+     accepted_as_a_waiter
+     performed_by_the_waiter
+
+class Bill
+attributes:
+     name_of_the_dish
+     price_of_the_dish
+     total_to_be_paid
+methods:
+     calculated_by_the_waiter
+     brought_by_the_waiter
+     paid_by_the_visitor
+
+
+USER HISTORY
+
+
+Hostess Olly meet the visitor and propose to choose a table
+Visitor Ruslan choose the table number 7 near the window and occupy it.
+Visitor Ruslan make order.
+Waiter Karina accepts and executes the order.
+Visitor Ruslan ask a bill.
+Waiter Karina calculate total 82 dollars and bring bill to the visitor.
+Visitor Ruslan pay a bill.
+Waiter Karina take a payment.
+Visitor Ruslan leave the restaurant "Yakitoria".
+Waiter Karina clean the table number 7.
+
+
+
+       
+
+
