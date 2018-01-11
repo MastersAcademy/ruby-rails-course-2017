@@ -1,7 +1,7 @@
 require './tamagochi.rb'
 require 'json'
 use Rack::Reloader
-# this is Pet
+# This is Pet
 class Pet
   def call(env)
     req = Rack::Request.new(env)

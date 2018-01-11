@@ -1,4 +1,4 @@
-# Tamagochi
+# This is Tamagochi program
 class Cat
   attr_accessor :name, :hunger, :sleep, :mood, :message, :is_dead
 
