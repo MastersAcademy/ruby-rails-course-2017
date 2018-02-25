@@ -1,3 +1,4 @@
+# Human
 class Human
   attr_reader :name, :gender
 
@@ -7,21 +8,17 @@ class Human
   end
 
   def name=(name)
-    if name.nil?
-      raise ArgumentError.new('Must be name')
-    end
+    raise ArgumentError, 'Must be name' unless name
     unless name.chr == name.chr.capitalize
-      raise ArgumentError.new('First symbol must be capital')
+      raise ArgumentError, 'First symbol must be capital'
     end
     @name = name
   end
 
   def gender=(gender)
-    if gender.nil?
-       raise ArgumentError.new('Sorry! Everyone has gender')
-    end
-    unless gender == 'male' or gender == 'female'
-       raise ArgumentError.new('Wrong gender')
+    raise ArgumentError, 'Sorry! Everyone has gender' unless gender
+    unless gender == 'male' && gender == 'female'
+      raise ArgumentError, 'Wrong gender, fix it'
     end
     @gender = gender
   end
@@ -35,10 +32,9 @@ class Human
   end
 end
 
-hum = Human.new("Sasha", "s")
+hum = Human.new('Sasha', 'asv')
 
 begin
   puts hum.name_h
   puts hum.gender_h
-rescue ArgumentError
 end
