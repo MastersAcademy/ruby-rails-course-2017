@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tamagotchi</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .progress_bar {
+            display: flex;
+        }
+        img {
+            height: 500px;
+            position: absolute;
+            left:20%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress_bar">
+    <div class="container">
+        <h2>Самопочуття</h2>
+        <div class="progress">
+            <div id="health" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                <span class="sr-only">Самопочуття</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Ситість</h2>
+        <div class="progress">
+            <div id="feed_indicator" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                <span class="sr-only">Ситість</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Енергійність</h2>
+        <div class="progress">
+            <div id="sleep_indicator" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                <span class="sr-only">Енергійність</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Настрій</h2>
+        <div class="progress">
+            <div id="fun_indicator" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                <span class="sr-only">Настрій</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="btn-group btn-group-justified"  >
+        <a  id="btn_feed" class="btn btn-success">Їсти</a>
+        <a  id="btn_sleep" class="btn btn-success">Спати</a>
+        <a   id="btn_fun" class="btn btn-success">Бавитися</a>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <img style="display:none;" id="eat_img" src="image/eat.jpg">
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <img style="display:none;"  id="sleep_img" src="image/sleep.jpg">
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <img style="display:none;"  id="fun_img" src="image/fun.jpg">
+        </div>
+    </div>
+</div>
+</div>
+<h3 id="message" align="center"></h3>
+<img id="pet-img" src="">
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function()  {
+
+        $('#btn_feed').on('click', function() {
+            return $('#eat_img').css('display', 'block');
+        });
+
+        $('#btn_sleep').on('click', function() {
+            return $('#sleep_img').css('display', 'block');
+        });
+
+        $('#btn_fun').on('click', function() {
+            return $('#fun_img').css('display', 'block');
+        });
+
+        $.ajax({
+            url: 'index.json',
+            context: document.body
+        }).done(function(data) {
+            $('#health').css('width', data.health+'%').attr('aria-valuenow', data.health);
+            $('#feed_indicator').css('width', data.feed_indicator+'%').attr('aria-valuenow', data.feed_indicator);
+            $('#sleep_indicator').css('width', data.sleep_indicator+'%').attr('aria-valuenow', data.sleep_indicator);
+            $('#fun_indicator').css('width', data.fun_indicator+'%').attr('aria-valuenow', data.fun_indicator);
+            $('#message').text(data.message);
+            $('#pet-img').attr('src', data.image);
+        });
+
+        function messaging(selector, path) {
+            $(selector).on('click', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: path,
+                    context: document.body
+                }).done(function(data) {
+                    console.log(data);
+                    $('#health').css('width', data.health+'%').attr('aria-valuenow', data.health);
+                    $('#feed_indicator').css('width', data.feed_indicator+'%').attr('aria-valuenow', data.feed_indicator);
+                    $('#sleep_indicator').css('width', data.sleep_indicator+'%').attr('aria-valuenow', data.sleep_indicator);
+                    $('#fun_indicator').css('width', data.fun_indicator+'%').attr('aria-valuenow', data.fun_indicator);
+                    $('#message').text(data.message);
+                    $('#pet-img').attr('src', data.image);
+                });
+            })
+        }
+
+        messaging('#feed', '/feed.json');
+        messaging('#sleep', '/sleep.json');
+        messaging('#fun', '/fun.json');
+        messaging('#repeat', '/index.json');
+    })
+</script>
+</body>
+</html>
