@@ -65,10 +65,10 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Ooops! Your pet is run away!</h4>
+            <h4 class="modal-title">Ooops! Your pet is runaway!</h4>
           </div>
           <div class="modal-body">
-            <p>Your did not care about your pet :-(</p>
+            <p>Your did not care about your pet, and he runaway :-(</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -108,7 +108,7 @@
               $('#health').css('width', data.health*10+'%').attr('aria-valuenow', data.health);
               $('#message').text(data.message);
 
-              if( data.is_dead ) {
+              if( data.runaway ) {
                 $('.modal').modal('toggle');
               }
             });

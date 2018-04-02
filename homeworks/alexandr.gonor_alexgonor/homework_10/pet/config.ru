@@ -1,6 +1,5 @@
 require 'json'
 require './dog.rb'
-use Rack::Reloader
 
 # Pet
 class Pet
@@ -15,7 +14,8 @@ class Pet
         health: @@pet.health,
         hunger: @@pet.hunger,
         asleep: @@pet.asleep,
-        play: @@pet.play
+        play: @@pet.play,
+        runaway: @@pet.runaway
       )
       [200, { 'Content-Type' => 'text/json' }, [result]]
     when '/feed.json'
@@ -24,7 +24,8 @@ class Pet
         health: @@pet.health,
         hunger: @@pet.hunger,
         asleep: @@pet.asleep,
-        play: @@pet.play
+        play: @@pet.play,
+        runaway: @@pet.runaway
       )
       [200, { 'Content-Type' => 'text/json' }, [result]]
     when '/go_to_sleep.json'
@@ -33,7 +34,8 @@ class Pet
         health: @@pet.health,
         hunger: @@pet.hunger,
         asleep: @@pet.asleep,
-        play: @@pet.play
+        play: @@pet.play,
+        runaway: @@pet.runaway
       )
       [200, { 'Content-Type' => 'text/json' }, [result]]
     when '/game.json'
@@ -42,7 +44,8 @@ class Pet
         health: @@pet.health,
         hunger: @@pet.hunger,
         asleep: @@pet.asleep,
-        play: @@pet.play
+        play: @@pet.play,
+        runaway: @@pet.runaway
       )
       [200, { 'Content-Type' => 'text/json' }, [result]]
     when '/defend_master.json'
@@ -51,7 +54,8 @@ class Pet
         health: @@pet.health,
         hunger: @@pet.hunger,
         asleep: @@pet.asleep,
-        play: @@pet.play
+        play: @@pet.play,
+        runaway: @@pet.runaway
       )
       [200, { 'Content-Type' => 'text/json' }, [result]]
     when '/clean.json'
@@ -60,7 +64,8 @@ class Pet
         health: @@pet.health,
         hunger: @@pet.hunger,
         asleep: @@pet.asleep,
-        play: @@pet.play
+        play: @@pet.play,
+        runaway: @@pet.runaway
       )
       [200, { 'Content-Type' => 'text/json' }, [result]]
     else

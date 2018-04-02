@@ -1,6 +1,6 @@
 # Dog
 class Dog
-  attr_accessor :name, :health, :hunger, :asleep, :play, :defend
+  attr_accessor :name, :health, :hunger, :message, :asleep, :play, :defend, :runaway
 
   def initialize(name)
     @name = name
@@ -9,6 +9,7 @@ class Dog
     @asleep = 10
     @play = 10
     @defend = false
+    @runaway = false
     @message = @name + ' was born.'
   end
 
@@ -61,7 +62,7 @@ class Dog
     @play -= 1
     if @hunger < 2 && @health < 2
       @message = @name + ' escape from home'
-      exit
+      @runaway = true
     end
   end
 end
