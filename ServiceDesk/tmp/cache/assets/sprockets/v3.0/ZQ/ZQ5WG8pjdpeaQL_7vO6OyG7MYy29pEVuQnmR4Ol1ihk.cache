@@ -1,0 +1,22 @@
+I""(function() {
+  var onDOMReady;
+
+  onDOMReady = function() {
+    return $(document).on('focus', 'input.datepicker:not(.hasDatepicker)', function() {
+      var defaults, input, options;
+      input = $(this);
+      if (input[0].type === 'date') {
+        return;
+      }
+      defaults = {
+        dateFormat: 'yy-mm-dd'
+      };
+      options = input.data('datepicker-options');
+      return input.datepicker($.extend(defaults, options));
+    });
+  };
+
+  $(document).ready(onDOMReady).on('page:load turbolinks:load', onDOMReady);
+
+}).call(this);
+:ET
