@@ -1,0 +1,50 @@
+#filterrific_results
+  %div
+    = page_entries_info @tickets
+  .panel.panel-default
+    %h1.panel-heading= t('tickets._list.list_of_tickets')
+    = button_to "New", new_ticket_path, method: :get
+    .panel-body
+      %table.table.table-striped.table-bordered.table-hover.table-condensed
+        %tr
+        %th= t('tickets._list.status_of_ticket')
+        %th= t('tickets._list.type_of_ticket')
+        %th= t('tickets._list.title')
+        %th= t('tickets._list.detailed_description')
+        %th= t('tickets._list.responsible_unit')
+        %th= t('tickets._list.author')
+        %th= t('tickets._list.executor')
+        %th= t('tickets._list.deadline')
+        %th= t('tickets._list.history')
+        %th= t('tickets._list.attachment')
+        %th= t('tickets._list.created_at')
+        %th= t('tickets._list.updated_at')
+        %th= t('tickets._list.available_actions')
+        - @tickets.each do |ticket|
+          %tr
+            %td= ticket.status_of_ticket
+            %td= ticket.type_of_ticket
+            %td= ticket.title
+            %td= ticket.detailed_description
+            %td= ticket.responsible_unit
+            %td
+              = ticket.user.username
+              = ticket.user.email
+            %td= ticket.executor
+            %td= ticket.deadline
+            %td= ticket.history
+            %td
+              - if ticket.attachment?
+                = image_tag(ticket.attachment_url(:thumb))
+                %br
+                = link_to 'Download file', ticket.attachment.url
+            %td= ticket.created_at
+            %td= ticket.updated_at
+            %td
+              = button_to "Show ticket", ticket_path(@user, ticket), method: :get
+              %br
+              - if ticket_of_current_user?(ticket)
+                = button_to "Edit ticket", edit_ticket_path(@user, ticket), method: :get
+                %br
+                = button_to "Delete ticket", ticket_path(@user, ticket), method: :delete, data: { confirm: 'Are you sure?' }
+= will_paginate tickets
