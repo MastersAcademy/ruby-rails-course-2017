@@ -1,0 +1,42 @@
+version: '3'
+services:
+  db:
+    image: postgres:9.6
+    ports:
+      - 5440:5432
+    env_file:
+      - .env
+  redis:
+    image: redis
+    ports:
+      - 6381:6379
+  rails:
+    image: vladvolkov/service_desk
+    command: sh -c 'cd /app/sd && bundle install && rails s -b 0.0.0.0'
+    stdin_open: true
+    depends_on:
+      - db
+      - redis
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app/sd
+      - sd-gems:/usr/local/bundle
+    tty: true
+    env_file:
+      - .env
+  sidekiq:
+    image: vladvolkov/service_desk
+    command: sh -c 'cd /app/sd && sidekiq'
+    stdin_open: true
+    depends_on:
+      - redis
+    volumes:
+      - .:/app/sd
+      - sd-gems:/usr/local/bundle
+    tty: true
+    env_file:
+      - .env
+volumes:
+  sd-gems:
+    driver: local
