@@ -1,0 +1,3 @@
+[submodule "homeworks/ihor.trypolskyi_ihortrypolskyi/docker_development/testhrhata"]
+	path = homeworks/ihor.trypolskyi_ihortrypolskyi/docker_development/testhrhata
+	url = git@gitlab.com:ihortrypolskyi/testhrhata.git
