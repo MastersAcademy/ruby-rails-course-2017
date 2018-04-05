@@ -1,0 +1,12 @@
+<h1 class="text-center">Announces list</h1>
+<div class="row">
+  <% @announcements.each do |announce| %>
+
+    <%= link_to(announce) do %>
+      <div class="center-block">
+        <%=raw announce.link %>
+      </div>
+
+    <% end %>
+  <% end %>
+</div>

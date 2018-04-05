@@ -1,0 +1,17 @@
+<h1 class="text-center">Articles list</h1>
+<div>
+  <% @articles.each do |article| %>
+    <%= link_to(article) do %>
+      <%= article.title %><br>
+      <%= article.short_description %><br>
+      <% if article.images? %>
+        <% article.images.each do |image| %>
+           <%= cl_image_tag(image.path, { size: '125x125', crop: :fit }) %>
+        <% end %>
+      <% else %>
+        <img src="http://placehold.it/125x94" alt="...">
+      <% end %>
+      <hr>
+    <% end %>
+  <% end %>
+</div>
