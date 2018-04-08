@@ -1,0 +1,46 @@
+<br>
+<h1 class="text-center">Top events reviews</h1>
+<div>
+  <% @events_reviews.each do |event_review| %>
+    <%= link_to(event_review) do %>
+      <%= event_review.title %><br>
+      <%= event_review.short_description %><br>
+      <% if event_review.images? %>
+        <% event_review.images.each do |image| %>
+           <%= cl_image_tag(image.path, { size: '125x125', crop: :fit }) %>
+        <% end %>
+      <% else %>
+        <img src="http://placehold.it/125x94" alt="...">
+      <% end %>
+      <hr>
+    <% end %>
+  <% end %>
+</div>
+<div class="float-right">
+  <%= link_to 'See all events reviews', events_reviews_path %>
+</div>
+
+
+<br>
+<h1 class="text-center">Top articles</h1>
+<div>
+  <% @articles.each do |article| %>
+    <%= link_to(article) do %>
+      <%= article.title %><br>
+      <%= article.short_description %><br>
+      <% if article.images? %>
+        <% article.images.each do |image| %>
+         <%= cl_image_tag(image.path, { size: '125x125', crop: :fit }) %>
+        <% end %>
+      <% else %>
+        <img src="http://placehold.it/125x94" alt="...">
+      <% end %>
+      <hr>
+  <% end %>
+<% end %>
+</div>
+<div class="float-right">
+  <%= link_to 'See all articles', articles_path %>
+</div>
+
+

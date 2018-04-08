@@ -1,0 +1,10 @@
+<h1><%= @article.title %></h1>
+<br>
+<h3><%= @article.description %></h3>
+<br>
+<% if @article.images? %>
+  <% @article.images.each do |image| %>
+    <%= cl_image_tag(image.path, { size: '125x125', crop: :fit }) %>
+  <% end %>
+<% end %>
+<hr>
